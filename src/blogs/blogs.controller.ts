@@ -21,6 +21,11 @@ export class BlogsController {
     return this.blogsService.fetchUserProfiles();
   }
 
+  @Get('proxy/users/:id')
+  async getIndividualProfile(@Param('id') id: string): Promise<any> {
+    return this.blogsService.fetchIndividualProfile(id);
+  }
+
   @Post('proxy/users')
   async postUserProfile(@Body() userData: any): Promise<any> {
     return this.blogsService.postUserProfile(userData);

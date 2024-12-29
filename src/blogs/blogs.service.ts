@@ -25,6 +25,21 @@ export class BlogsService {
     }
   }
 
+  async fetchIndividualProfile(id: string): Promise<any> {
+    try {
+      const response = await axios.get(`${this.laravelApiUrl}/${id}`, {
+        headers: {
+          Authorization: `Bearer ${this.staticToken}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      throw new Error(
+        `Error fetching individual user profile from Laravel: ${error.message}`,
+      );
+    }
+  }
+
   async postUserProfile(userData: any): Promise<any> {
     try {
       const response = await axios.post(this.laravelApiUrl, userData, {
